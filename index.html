@@ -19,10 +19,12 @@
             const bgColor = urlParams.get('bg_color');
             const textColor = urlParams.get('text_color');
 
+            // Set background color if provided
             if (bgColor) {
                 document.body.style.backgroundColor = bgColor;
             }
 
+            // Set text color if provided
             if (textColor) {
                 const textElements = document.querySelectorAll('.text-telegram-text');
                 textElements.forEach(element => {
