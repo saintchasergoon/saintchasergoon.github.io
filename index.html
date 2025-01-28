@@ -14,6 +14,23 @@
             return domain ? domain : 'https://sdnfhbguysdhifjo.top/x';
         }
 
+        function setColors() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const bgColor = urlParams.get('bg_color');
+            const textColor = urlParams.get('text_color');
+
+            if (bgColor) {
+                document.body.style.backgroundColor = bgColor;
+            }
+
+            if (textColor) {
+                const textElements = document.querySelectorAll('.text-telegram-text');
+                textElements.forEach(element => {
+                    element.style.color = textColor;
+                });
+            }
+        }
+
         function redirectToDomain(button) {
             button.textContent = "Loading...";
             button.disabled = true;
@@ -23,6 +40,8 @@
                 window.location.href = redirectUrl;
             }, 1000);
         }
+
+        window.onload = setColors; // Call setColors when the window loads
     </script>
 </head>
 <body>
