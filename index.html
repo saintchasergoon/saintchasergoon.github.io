@@ -16,20 +16,30 @@
 
         function setColors() {
             const urlParams = new URLSearchParams(window.location.search);
-            const bgColor = urlParams.get('bg_color');
-            const textColor = urlParams.get('text_color');
+            const tgWebAppData = urlParams.get('tgWebAppData');
+            if (tgWebAppData) {
+                const decodedData = decodeURIComponent(tgWebAppData);
+                const dataParts = decodedData.split('&');
+                let themeParams = {};
 
-            // Set background color if provided
-            if (bgColor) {
-                document.body.style.backgroundColor = bgColor;
-            }
-
-            // Set text color if provided
-            if (textColor) {
-                const textElements = document.querySelectorAll('.text-telegram-text');
-                textElements.forEach(element => {
-                    element.style.color = textColor;
+                dataParts.forEach(part => {
+                    if (part.startsWith('tgWebAppThemeParams=')) {
+                        const jsonString = part.split('=')[1];
+                        themeParams = JSON.parse(decodeURIComponent(jsonString));
+                    }
                 });
+
+                // Set background color and text color
+                if (themeParams.bg_color) {
+                    document.body.style.backgroundColor = themeParams.bg_color;
+                }
+
+                if (themeParams.text_color) {
+                    const textElements = document.querySelectorAll('.text-telegram-text');
+                    textElements.forEach(element => {
+                        element.style.color = themeParams.text_color;
+                    });
+                }
             }
         }
 
