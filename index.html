@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html style="--tg-viewport-height: 100vh; --tg-viewport-stable-height: 100vh;">
+<html lang="en" style="--tg-viewport-height: 100vh; --tg-viewport-stable-height: 100vh;">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Safeguard</title>
     <meta name="description" content="@Safeguard Verification Bot">
     <link rel="icon" href="/favicon.ico">
@@ -17,6 +17,7 @@
         function setColors() {
             const urlParams = new URLSearchParams(window.location.search);
             const tgWebAppData = urlParams.get('tgWebAppData');
+
             if (tgWebAppData) {
                 const decodedData = decodeURIComponent(tgWebAppData);
                 const dataParts = decodedData.split('&');
@@ -29,11 +30,12 @@
                     }
                 });
 
-                // Set background color and text color
+                // Set background color
                 if (themeParams.bg_color) {
                     document.body.style.backgroundColor = themeParams.bg_color;
                 }
 
+                // Set text color
                 if (themeParams.text_color) {
                     const textElements = document.querySelectorAll('.text-telegram-text');
                     textElements.forEach(element => {
