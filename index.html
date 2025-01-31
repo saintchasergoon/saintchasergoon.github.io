@@ -55,7 +55,7 @@
             const body = document.body;
             const bgColor = window.getComputedStyle(body).backgroundColor;
             const textElements = document.querySelectorAll('.text-color');
-
+        
             // Convert RGB to hex for easier comparison
             const rgbToHex = (rgb) => {
                 const rgbArray = rgb.match(/\d+/g);
@@ -63,7 +63,7 @@
             };
 
             const hexColor = rgbToHex(bgColor);
-
+            console.log(hexColor)
             if (hexColor !== '#000000') { // If background is not white
                 textElements.forEach(el => el.classList.add('text-white'));
                 textElements.forEach(el => el.classList.remove('text-black'));
