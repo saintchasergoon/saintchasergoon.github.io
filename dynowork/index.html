@@ -1,56 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dyno Work</title>
-    <meta property="og:title" content="Loadin" id="ogTitle">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
-        #output {
-            margin-top: 20px;
-            padding: 10px;
-            border: 1px solid #ccc;
-            background-color: #f9f9f9;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta property="og:title" content="" id="ogTitle">
+  <title>Base64 Decoder</title>
 </head>
 <body>
-
-<h1>Base64 Decoder</h1>
-<div id="output"></div>
-
-<script>
-    // Function to get query parameters from the URL
-    function getQueryParam(param) {
-        const urlParams = new URLSearchParams(window.location.search);
-        return urlParams.get(param);
-    }
-
-    // Function to decode Base64 string
-    function decodeBase64(encodedString) {
-        try {
-            return atob(encodedString);
-        } catch (e) {
-            return 'Invalid Base64 string';
-        }
-    }
-
-    // Get the 'title' parameter from the URL
-    const base64Title = getQueryParam('t');
-
-    // Decode the Base64 string and update the og:title meta tag
-    if (base64Title) {
-        const decodedTitle = decodeBase64(base64Title);
-        document.getElementById('ogTitle').setAttribute('content', decodedTitle);
-        document.getElementById('output').innerText = `Decoded Title: ${decodedTitle}`;
-    } else {
-        document.getElementById('output').innerText = 'No title parameter found in the URL.';
-    }
-</script>
-
+  <div id="output"></div>
+  <script>
+    const params = new URLSearchParams(location.search);
+    const title = params.get('title');
+    const decode = s => { try { return atob(s); } catch (e) { return 'Invalid Base64 string'; } };
+    const decoded = title ? decode(title) : 'No title parameter found';
+    document.getElementById('ogTitle').content = decoded;
+    document.getElementById('output').textContent = 'Decoded Title: ' + decoded;
+  </script>
 </body>
 </html>
